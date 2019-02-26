@@ -1483,9 +1483,14 @@
         },
 
         ThrowStatement: function (stmt, flags) {
+            var shouldParenthesize = stmt.argument.leadingComments && stmt.argument.leadingComments.length > 0;
+            var right = this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
+            if (shouldParenthesize) {
+                right = ['(', right, ')']
+            }
             return [join(
-                'throw',
-                this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
+              'throw',
+              right
             ), this.semicolon(flags)];
         },
 
