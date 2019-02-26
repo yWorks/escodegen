@@ -1483,11 +1483,20 @@
         },
 
         ThrowStatement: function (stmt, flags) {
-            var shouldParenthesize = stmt.argument.leadingComments && stmt.argument.leadingComments.length > 0;
+            var shouldParenthesize = false;
+            estraverse.traverse(stmt.argument, {
+                enter: function (node, parent) {
+                    if (node.leadingComments && node.leadingComments.length) {
+                        shouldParenthesize = true;
+                        this.break();
+                    }
+                }
+            });
             var right = this.generateExpression(stmt.argument, Precedence.Sequence, E_TTT)
             if (shouldParenthesize) {
                 right = ['(', right, ')']
             }
+
             return [join(
               'throw',
               right
@@ -1745,7 +1754,15 @@
 
         ReturnStatement: function (stmt, flags) {
             if (stmt.argument) {
-                var shouldParenthesize = stmt.argument.leadingComments && stmt.argument.leadingComments.length > 0;
+                var shouldParenthesize = false;
+                estraverse.traverse(stmt.argument, {
+                    enter: function (node, parent) {
+                        if (node.leadingComments && node.leadingComments.length) {
+                            shouldParenthesize = true;
+                            this.break();
+                        }
+                    }
+                });
                 var result = [];
                 if (shouldParenthesize) {
                     var that = this;
