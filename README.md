@@ -4,13 +4,14 @@
 [![Dependency Status](https://david-dm.org/estools/escodegen.svg)](https://david-dm.org/estools/escodegen)
 [![devDependency Status](https://david-dm.org/estools/escodegen/dev-status.svg)](https://david-dm.org/estools/escodegen#info=devDependencies)
 
+This is a fork of [estools/escodegen](https://github.com/estools/escodegen) that fixes [issue 365](https://github.com/estools/escodegen/issues/365) (pull request pending). This fork is available as [@yworks/escodegen](https://www.npmjs.com/package/@yworks/escodegen) on npm. 
+
 Escodegen ([escodegen](http://github.com/estools/escodegen)) is an
 [ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
 (also popularly known as [JavaScript](http://en.wikipedia.org/wiki/JavaScript))
 code generator from [Mozilla's Parser API](https://developer.mozilla.org/en/SpiderMonkey/Parser_API)
 AST. See the [online generator](https://estools.github.io/escodegen/demo/index.html)
 for a demo.
-
 
 ### Install
 
